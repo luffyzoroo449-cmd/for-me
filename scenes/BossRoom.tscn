@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://boss_room"]
+
+[ext_resource type="PackedScene" uid="uid://player_scene" path="res://scenes/Player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/enemies/BossAI.gd" id="2_boss"]
+[ext_resource type="Theme" uid="uid://ui_theme" path="res://styles/UITheme.tres" id="3_theme"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_Floor"]
+size = Vector2(2000, 100)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_Boss"]
+size = Vector2(120, 200)
+
+[node name="BossRoom" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 3000.0
+offset_bottom = 2000.0
+color = Color(0.05, 0, 0.05, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["player_camera"]]
+position = Vector2(960, 540)
+limit_left = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(960, 1000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_Floor")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -1000.0
+offset_top = -50.0
+offset_right = 1000.0
+offset_bottom = 50.0
+color = Color(0.1, 0.1, 0.2, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(300, 950)
+
+[node name="FinalBoss" type="CharacterBody2D" parent="." groups=["enemy"]]
+position = Vector2(1600, 950)
+collision_layer = 4
+script = ExtResource("2_boss")
+
+[node name="Sprite2D" type="Sprite2D" parent="FinalBoss"]
+modulate = Color(0.8, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_Boss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinalBoss"]
+shape = SubResource("RectangleShape2D_Floor")
+
+[node name="BossUI" type="CanvasLayer" parent="."]
+
+[node name="BossBar" type="Control" parent="BossUI"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -100.0
+offset_right = 400.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_theme")
+
+[node name="ProgressBar" type="ProgressBar" parent="BossUI/BossBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+
+[node name="Label" type="Label" parent="BossUI/BossBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = -10.0
+grow_horizontal = 2
+text = "VALLEY PURGATOR"
+horizontal_alignment = 1

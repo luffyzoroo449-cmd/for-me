@@ -1,0 +1,26 @@
+[gd_resource type="Theme" format=3 uid="uid://b0w73bmabp8lw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Gold"]
+bg_color = Color(0.960784, 0.619608, 0.0431373, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.843137, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 4
+
+[resource]
+default_font_size = 18
+Button/colors/font_color = Color(1, 0.9, 0.5, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_Gold")
+Button/styles/normal = SubResource("StyleBoxFlat_Gold")
+Label/colors/font_color = Color(1, 0.843137, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Panel/styles/panel = SubResource("StyleBoxFlat_Gold")
+ProgressBar/styles/background = null
+ProgressBar/styles/fill = null
