@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowRise: Chronicles | Playable Tech Demo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #05050a;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #game-container {
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            border: 2px solid #333;
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.2);
+            background: url('shadowrise_menu_bg_web.png') no-repeat center center;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #ui-layer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            pointer-events: none;
+        }
+
+        .bar-container {
+            width: 250px;
+            height: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 8px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 100%;
+            transition: width 0.3s;
+        }
+
+        #hp-fill {
+            background: #ef4444;
+            box-shadow: 0 0 10px #ef4444;
+        }
+
+        #mp-fill {
+            background: #8b5cf6;
+            box-shadow: 0 0 10px #8b5cf6;
+        }
+
+        #controls-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
+
+        #splash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 10, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: 0.5s;
+        }
+
+        h2 {
+            font-size: 3rem;
+            color: #f59e0b;
+            margin: 0;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 40px;
+            background: #f59e0b;
+            border: none;
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #fff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="game-container">
+        <canvas id="gameCanvas" width="1000" height="600"></canvas>
+
+        <div id="ui-layer">
+            <div class="bar-container">
+                <div id="hp-fill" class="bar-fill"></div>
+            </div>
+            <div class="bar-container">
+                <div id="mp-fill" class="bar-fill"></div>
+            </div>
+        </div>
+
+        <div id="controls-hint">AD to Move | Space to Jump | Left Click to Attack</div>
+
+        <div id="splash">
+            <h2>SHADOWRISE</h2>
+            <p>TECH DEMO v1.0</p>
+            <button onclick="startGame()">Start Fast App</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const hpFill = document.getElementById('hp-fill');
+        const mpFill = document.getElementById('mp-fill');
+        const splash = document.getElementById('splash');
+
+        // Game Configuration
+        const PLAYER_SPEED = 5;
+        const JUMP_FORCE = -15;
+        const GRAVITY = 0.8;
+
+        let gameRunning = false;
+        let keys = {};
+
+        // Character Classes
+        class Entity {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.w = 40;
+                this.h = 80;
+                this.vx = 0;
+                this.vy = 0;
+                this.hp = 100;
+                this.color = color;
+                this.onGround = false;
+                this.isFacingRight = true;
+                this.attackCooldown = 0;
+            }
+
+            draw() {
+                // Glow effect
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = this.color;
+
+                // Body
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+
+                // Head Details
+                ctx.fillStyle = '#fff';
+                const eyeX = this.isFacingRight ? this.x + 25 : this.x + 5;
+                ctx.fillRect(eyeX, this.y + 10, 10, 10);
+
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        const player = new Entity(100, 400, '#8b5cf6');
+        const enemies = [
+            new Entity(600, 400, '#ef4444'),
+            new Entity(800, 400, '#ef4444')
+        ];
+
+        function startGame() {
+            splash.style.opacity = '0';
+            setTimeout(() => splash.style.display = 'none', 500);
+            gameRunning = true;
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('keydown', e => keys[e.code] = true);
+        window.addEventListener('keyup', e => keys[e.code] = false);
+        window.addEventListener('mousedown', () => { if (player.attackCooldown <= 0) player.attackCooldown = 20; });
+
+        function update() {
+            if (!gameRunning) return;
+
+            // Player Movement
+            player.vx = 0;
+            if (keys['KeyA']) { player.vx = -PLAYER_SPEED; player.isFacingRight = false; }
+            if (keys['KeyD']) { player.vx = PLAYER_SPEED; player.isFacingRight = true; }
+            if (keys['Space'] && player.onGround) {
+                player.vy = JUMP_FORCE;
+                player.onGround = false;
+            }
+
+            player.x += player.vx;
+            player.vy += GRAVITY;
+            player.y += player.vy;
+
+            // Floor Collision
+            if (player.y > 450) {
+                player.y = 450;
+                player.vy = 0;
+                player.onGround = true;
+            }
+
+            // Attack Logic
+            if (player.attackCooldown > 0) {
+                player.attackCooldown--;
+                if (player.attackCooldown === 10) { // Hit Frame
+                    enemies.forEach(en => {
+                        const dist = Math.abs((player.x + 20) - (en.x + 20));
+                        if (dist < 100 && en.hp > 0) en.hp -= 25;
+                    });
+                }
+            }
+
+            // Enemy AI (Basic Patrol)
+            enemies.forEach(en => {
+                if (en.hp <= 0) return;
+                en.x += Math.sin(Date.now() / 1000) * 2;
+
+                // Detection
+                if (Math.abs(en.x - player.x) < 200) {
+                    en.color = '#ff9900'; // Alert
+                } else {
+                    en.color = '#ef4444';
+                }
+            });
+
+            // UI
+            hpFill.style.width = player.hp + '%';
+            mpFill.style.width = '60%'; // Static for demo
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Ground
+            ctx.fillStyle = 'rgba(255,255,255,0.05)';
+            ctx.fillRect(0, 530, canvas.width, 70);
+
+            // Draw Entities
+            player.draw();
+
+            // Swing Trail
+            if (player.attackCooldown > 5 && player.attackCooldown < 15) {
+                ctx.fillStyle = 'rgba(139, 92, 246, 0.4)';
+                const tx = player.isFacingRight ? player.x + 40 : player.x - 60;
+                ctx.fillRect(tx, player.y, 60, 80);
+            }
+
+            enemies.forEach(en => {
+                if (en.hp > 0) en.draw();
+            });
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            if (gameRunning) requestAnimationFrame(gameLoop);
+        }
+
+    </script>
+</body>
+
+</html>

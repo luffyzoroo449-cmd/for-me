@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://level_1"]
+
+[ext_resource type="PackedScene" uid="uid://player_scene" path="res://scenes/Player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/world/EnvironmentalSystems.gd" id="2_env"]
+[ext_resource type="Script" path="res://scripts/world/AdvancedParallax.gd" id="3_parallax"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1"]
+
+[sub_resource type="Gradient" id="Gradient_1"]
+colors = PackedColorArray(0.1, 0.1, 0.15, 1, 0.2, 0.2, 0.3, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1"]
+gradient = SubResource("Gradient_1")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="Level_1" type="Node2D"]
+
+[node name="EnvironmentalSystems" type="Node" parent="."]
+script = ExtResource("2_env")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("3_parallax")
+
+[node name="SkyLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SkyLayer"]
+texture = SubResource("GradientTexture2D_1")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 1000)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_1")
+
+[node name="VisualFloor" type="ColorRect" parent="Ground"]
+offset_left = -10000.0
+offset_right = 10000.0
+offset_bottom = 200.0
+color = Color(0.15, 0.1, 0.05, 1)
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_player")]
+position = Vector2(500, 950)
+
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." groups=["canvas_modulate"]]
+color = Color(0.8, 0.8, 0.9, 1)

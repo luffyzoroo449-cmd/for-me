@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://player_scene"]
+
+[ext_resource type="Script" path="res://scripts/player/HeroController.gd" id="1_hero"]
+[ext_resource type="Script" path="res://scripts/player/FaceManager.gd" id="2_face"]
+[ext_resource type="Script" path="res://scripts/physics/CombatPhysics.gd" id="3_combat"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
+radius = 15.0
+height = 60.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_hero")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="MainSprite" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -32)
+# Placeholder for high-res 1024px sprite
+
+[node name="FaceOverlay" type="Sprite2D" parent="Visuals/MainSprite"]
+script = ExtResource("2_face")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Visuals"]
+
+[node name="Torso" type="Bone2D" parent="Visuals/Skeleton2D"]
+position = Vector2(0, -30)
+rest = Transform2D(1, 0, 0, 1, 0, -30)
+
+[node name="Neck" type="Bone2D" parent="Visuals/Skeleton2D/Torso"]
+position = Vector2(0, -10)
+rest = Transform2D(1, 0, 0, 1, 0, -10)
+
+[node name="Head" type="Bone2D" parent="Visuals/Skeleton2D/Torso/Neck"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="WeaponSprite" type="Sprite2D" parent="Visuals"]
+position = Vector2(20, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -30)
+shape = SubResource("CapsuleShape2D_1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CombatPhysics" type="Node" parent="."]
+script = ExtResource("3_combat")
+
+[node name="MeleeHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox"]
+position = Vector2(30, -30)
+shape = SubResource("CapsuleShape2D_1")
+
+[node name="HeartbeatPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
