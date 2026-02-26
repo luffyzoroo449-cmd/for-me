@@ -123,10 +123,26 @@ func _populate_save_slots():
 		slot_panel.add_child(slot_btn)
 
 func _load_game_slot(slot_index: int):
-	print("Loading Slot: ", slot_index)
-	# GameManager carries the persistent data
+	print("--- Starting Session ---")
+	print("Slot: ", slot_index)
+	print("User ID: ", current_user_id)
+	
+	GameManager.reset_to_defaults()
 	GameManager.player_name = current_user_id
-	get_tree().change_scene_to_file("res://scenes/Level_1.tscn")
+	
+	# Attempt to load data if it exists
+	GameManager.load_game(slot_index)
+	
+	# Scene transition logic
+	var level_path = "res://scenes/Level_1.tscn"
+	if FileAccess.file_exists(level_path):
+		print("Transitioning to: ", level_path)
+		var err = get_tree().change_scene_to_file(level_path)
+		if err != OK:
+			_show_error("Scene Change Error: " + str(err))
+	else:
+		_show_error("Level 1 Not Found!")
+		printerr("CRITICAL: res://scenes/Level_1.tscn is missing from FileSystem.")
 
 func _show_error(msg: String):
 	$CanvasLayer/ErrorLabel.text = msg

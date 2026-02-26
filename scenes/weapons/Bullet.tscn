@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bullet_scene"]
+
+[ext_resource type="Script" path="res://scripts/weapons/Bullet.gd" id="1_bullet"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 4.0
+
+[node name="Bullet" type="Area2D" groups=["bullet"]]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_bullet")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+# Using a white texture placeholder or we can use a small ColorRect if the script is modified
+# For now, let's assume there is a generic white pixel
+modulate = Color(1, 1, 0.4, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

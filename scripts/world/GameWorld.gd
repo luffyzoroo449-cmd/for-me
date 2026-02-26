@@ -43,7 +43,11 @@ func _ready() -> void:
 
 	# HUD init
 	if hud:
-		hud.get_node("HUD").init_level(level_id, world_id, player_node.health)
+		var hud_node = hud.get_node_or_null("HUD")
+		if hud_node and player_node:
+			hud_node.init_level(level_id, world_id, player_node.health)
+		else:
+			print("Warning: HUD node or Player node missing in GameWorld.")
 
 func _process(delta: float) -> void:
 	if not is_level_active:

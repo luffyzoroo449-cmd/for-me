@@ -1,5 +1,5 @@
 72322a848ab928aa5c89f0cb78209805
-::res://::1772104658
+::res://::1772107290
 ADVANCED_SYSTEMS_GUIDE.md::TextFile::-1::1772099060::0::1::::<><><>0<>0<><>::
 AUDIO_PRODUCTION_GUIDE.md::TextFile::-1::1772100863::0::1::::<><><>0<>0<><>::
 default_env.tres::Environment::-1::1772101231::0::1::::<><><>0<>0<><>::
@@ -21,7 +21,7 @@ InventoryUI.tscn::PackedScene::-1::1772101345::0::1::::<><><>0<>0<><>::res://sty
 LevelComplete.tscn::PackedScene::-1::1772103754::0::1::::<><><>0<>0<><>::
 Level_1.tscn::PackedScene::-1::1772101203::0::1::::<><><>0<>0<><>::res://scenes/Player.tscn<>res://scripts/world/EnvironmentalSystems.gd<>res://scripts/world/AdvancedParallax.gd
 Main.tscn::PackedScene::-1::1772101247::0::1::::<><><>0<>0<><>::res://scripts/world/GameWorld.gd<>res://default_env.tres
-MainMenu.tscn::PackedScene::3438139372165837496::1772101813::0::1::::<><><>0<>0<><>::uid://ip4xsodwdrc2::::res://scripts/ui/MainMenuManager.gd<>res://styles/UITheme.tres
+MainMenu.tscn::PackedScene::3438139372165837496::1772105158::0::1::::<><><>0<>0<><>::uid://ip4xsodwdrc2::::res://scripts/ui/MainMenuManager.gd<>res://styles/UITheme.tres
 Player.tscn::PackedScene::-1::1772104179::0::1::::<><><>0<>0<><>::res://scripts/player/HeroController.gd<>res://scripts/player/FaceManager.gd<>res://scripts/physics/CombatPhysics.gd<>res://scripts/weapons/WeaponManager.gd
 ::res://scenes/effects/::1772103782
 BurstParticle.tscn::PackedScene::-1::1772103782::0::1::::<><><>0<>0<><>::res://scripts/world/BurstParticle.gd
@@ -50,8 +50,8 @@ AudioManager.gd::GDScript::8730694734526817999::1772100336::0::1::::<>Node<><>0<
 CraftingManager.gd::GDScript::2740974376855618977::1772100993::0::1::::<>Node<><>0<>0<><>::
 DebugManager.gd::GDScript::4892986570741034041::1772101895::0::1::::<>Node<><>0<>0<><>::
 EffectsManager.gd::GDScript::1529138509239223414::1772100891::0::1::::<>Node<><>0<>0<><>::
-GameManager.gd::GDScript::2909524357624926764::1772102905::0::1::::<>Node<><>0<>0<><>::
-InventoryManager.gd::GDScript::2875782008951299861::1772101326::0::1::::<>Node<><>0<>0<><>::
+GameManager.gd::GDScript::2909524357624926764::1772107216::0::1::::<>Node<><>0<>0<><>::
+InventoryManager.gd::GDScript::2875782008951299861::1772105452::0::1::::<>Node<><>0<>0<><>::
 MusicDirector.gd::GDScript::3559759111968645572::1772099421::0::1::::<>Node<><>0<>0<><>::
 ObjectPool.gd::GDScript::5948706847539387310::1772100210::0::1::::<>Node<><>0<>0<><>::
 QuestManager.gd::GDScript::8430468825673881859::1772101060::0::1::::<>Node<><>0<>0<><>::
@@ -60,17 +60,17 @@ SaveData.gd::GDScript::2192440664967958377::1772100394::0::1::::SaveData<>Resour
 SaveSystem.gd::GDScript::3947623192353749404::1772100381::0::1::::<>Node<><>0<>0<><>::
 SkillTreeManager.gd::GDScript::1228880424391859705::1772100270::0::1::::<>Node<><>0<>0<><>::
 SkinManager.gd::GDScript::6758821979750227077::1772101815::0::1::::<>Node<><>0<>0<><>::
-SoundManager.gd::GDScript::8433709843993161584::1772104082::0::1::::<>Node<><>0<>0<><>::
+SoundManager.gd::GDScript::8433709843993161584::1772105323::0::1::::<>Node<><>0<>0<><>::
 StoryDirector.gd::GDScript::3320615106628557106::1772100196::0::1::::<>Node<><>0<>0<><>::
 StoryManager.gd::GDScript::7826255650737340524::1772099354::0::1::::<>Node<><>0<>0<><>::
 ThemeController.gd::GDScript::6758030353225740295::1772104011::0::1::::<>Node<><>0<>0<><>::
-VFXManager.gd::GDScript::27774272984258089::1772100285::0::1::::<>Node<><>0<>0<><>::
+VFXManager.gd::GDScript::27774272984258089::1772105359::0::1::::<>Node<><>0<>0<><>::
 WeaponUnlockManager.gd::GDScript::2245951281330868701::1772100170::0::1::::<>Node<><>0<>0<><>::
 ::res://scripts/physics/::1772101655
 CombatPhysics.gd::GDScript::7168823695817121546::1772100744::0::1::::<>Node<><>0<>0<><>::
 VerletCloth2D.gd::GDScript::8338078698035808043::1772099033::0::1::::<>Node2D<><>0<>0<><>::
 ::res://scripts/player/::1772101655
-FaceManager.gd::GDScript::6798660950460829009::1772100510::0::1::::<>Sprite2D<><>0<>0<><>::
+FaceManager.gd::GDScript::6798660950460829009::1772107073::0::1::::<>Sprite2D<><>0<>0<><>::
 HeroController.gd::GDScript::7889430200785546708::1772103669::0::1::::<>CharacterBody2D<><>0<>0<><>::
 Player.gd::GDScript::163980440766665212::1772097839::0::1::::<>CharacterBody2D<><>0<>0<><>::
 RealisticPlayerController.gd::GDScript::7847878360239043955::1772098847::0::1::::<>CharacterBody2D<><>0<>0<><>::
@@ -83,7 +83,7 @@ GameHUD.gd::GDScript::4218991391805854290::1772099793::0::1::::<>CanvasLayer<><>
 HUD.gd::GDScript::1134119918463612136::1772102735::0::1::::<>Control<><>0<>0<><>::
 LevelSelect.gd::GDScript::7076941925839788119::1772098336::0::1::::<>Control<><>0<>0<><>::
 MainMenu.gd::GDScript::143449781353246855::1772098246::0::1::::<>Control<><>0<>0<><>::
-MainMenuManager.gd::GDScript::594279248678603515::1772103226::0::1::::<>Control<><>0<>0<><>::
+MainMenuManager.gd::GDScript::594279248678603515::1772107228::0::1::::<>Control<><>0<>0<><>::
 NPCLogic.gd::GDScript::8601961167332806681::1772100621::0::1::::<>CharacterBody2D<><>0<>0<><>::
 WorldHUD.gd::GDScript::3840206387280930282::1772099909::0::1::::<>Control<><>0<>0<><>::
 ::res://scripts/weapons/::1772101656
@@ -103,7 +103,7 @@ CrumblingPlatform.gd::GDScript::2997204604579304065::1772098351::0::1::::<>Stati
 DestructibleObject.gd::GDScript::821943102882319657::1772101003::0::1::::<>StaticBody2D<><>0<>0<><>::
 EnvironmentalSystems.gd::GDScript::7693494878388185496::1772099449::0::1::::<>Node2D<><>0<>0<><>::
 ExitPortal.gd::GDScript::2911493103852006987::1772098231::0::1::::<>Area2D<><>0<>0<><>::
-GameWorld.gd::GDScript::6554657929230988337::1772104117::0::1::::<>Node2D<><>0<>0<><>::
+GameWorld.gd::GDScript::6554657929230988337::1772107195::0::1::::<>Node2D<><>0<>0<><>::
 Hazard.gd::GDScript::6302828679647136238::1772098217::0::1::::<>Area2D<><>0<>0<><>::
 InteriorSystem.gd::GDScript::707188909916857410::1772099042::0::1::::<>Node2D<><>0<>0<><>::
 MovingPlatform.gd::GDScript::6576055835572196030::1772098343::0::1::::<>AnimatableBody2D<><>0<>0<><>::
@@ -113,4 +113,4 @@ WaterBody.gd::GDScript::1186548471225015080::1772099051::0::1::::<>Area2D<><>0<>
 WhisperingValley.gd::GDScript::5904538025671638943::1772099317::0::1::::<>Node2D<><>0<>0<><>::
 WorldBackground.gd::GDScript::960134882076535814::1772098239::0::1::::<>ParallaxBackground<><>0<>0<><>::
 ::res://styles/::1772101813
-UITheme.tres::Theme::4188551102294057240::1772101813::0::1::::<><><>0<>0<><>::
+UITheme.tres::Theme::4188551102294057240::1772107135::0::1::::<><><>0<>0<><>::

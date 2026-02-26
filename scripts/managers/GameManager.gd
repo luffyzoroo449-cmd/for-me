@@ -28,6 +28,18 @@ var current_weapon = "steel_sword"
 # --- Settings & Persistence ---
 var settings = {"music": true, "sfx": true, "vibration": true}
 
+func reset_to_defaults():
+	hp = 100.0
+	max_hp = 100.0
+	mp = 50.0
+	level = 1
+	xp = 0
+	reputation = 0
+	boss_flags = {"lava": false, "water": false, "shadow": false}
+	unlocked_weapons = ["steel_sword"]
+	current_weapon = "steel_sword"
+	print("GameManager: Reset to defaults.")
+
 func add_xp(amount: int):
 	xp += amount
 	if xp >= _get_next_level_xp():

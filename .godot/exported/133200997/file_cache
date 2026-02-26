@@ -1,0 +1,14 @@
+res://scenes/effects/BurstParticle.tscn::bf96110f42636798e007c1ecf4595ca1::1772103782::res://.godot/exported/133200997/export-d59c674b778e587386e92c3d5a4decd2-BurstParticle.scn
+res://scenes/weapons/Bullet.tscn::8835f63b997fb63b6d0c5acbe31120fa::1772107430::res://.godot/exported/133200997/export-7c97fdf49e4e164bc70a48259a06f482-Bullet.scn
+res://scenes/weapons/EnemyBullet.tscn::7176b3f6cfed1f28caded9c876b2b97b::1772107460::res://.godot/exported/133200997/export-e3a3919b2c3fe4e12ced4c4dadafdf90-EnemyBullet.scn
+res://scenes/BossRoom.tscn::4730e21d8624ec81dce7f6616f912020::1772102124::res://.godot/exported/133200997/export-3f4bb7677b7139057bf04f5357dc06a8-BossRoom.scn
+res://scenes/GameBoot.tscn::6d7a09eade6e5a5b8ec29f8ccde4d931::1772102143::res://.godot/exported/133200997/export-8e9b8cb26931648972f1c28475f3d490-GameBoot.scn
+res://scenes/GameOver.tscn::da7176ff2d32a54c61c4143914ec2654::1772103740::res://.godot/exported/133200997/export-5e2441304cbe3362f929858a53beba09-GameOver.scn
+res://scenes/InventoryUI.tscn::71b5443b73c7412f717b64a83fa80baf::1772101345::res://.godot/exported/133200997/export-db8e4a10be7f0120d20a822a4daf66f3-InventoryUI.scn
+res://scenes/LevelComplete.tscn::4220323d4688ab1e7cdad87e2f7b8369::1772103754::res://.godot/exported/133200997/export-55b3a4b3d63a023085060a398df8e459-LevelComplete.scn
+res://scenes/Level_1.tscn::5c47f615e0ae034a9b4e3692c7558115::1772101203::res://.godot/exported/133200997/export-9224bd3109b2f6806b4c6e36e5d57118-Level_1.scn
+res://scenes/Main.tscn::a24e93ecfa042e975f560fe555b14205::1772101247::res://.godot/exported/133200997/export-4a24720ee5e787dbe30abc634fa3679d-Main.scn
+res://scenes/MainMenu.tscn::ab89b3dfb6cfa58b59893e18d7fd8329::1772105158::res://.godot/exported/133200997/export-23c8b2a48d59a0cd018bd8ad5ce7794c-MainMenu.scn
+res://scenes/Player.tscn::2b119116661365bfe47d20cefa02356b::1772104179::res://.godot/exported/133200997/export-e8220e74d1354b9e6b168b513689419c-Player.scn
+res://styles/UITheme.tres::a4d8c401e343028d03956529e4451b75::1772107135::res://.godot/exported/133200997/export-318421b277698e1c918a00485b2446e1-UITheme.res
+res://default_env.tres::73456e3e6833a1b3b127eda2e4996c02::1772101231::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
